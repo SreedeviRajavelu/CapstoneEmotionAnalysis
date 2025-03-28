@@ -1,4 +1,4 @@
-Access these Kaggle Notebooks and fork them to edit your own copy
+Access these Kaggle Notebooks and make a copy for your own modification
 
 ECG Stress Classification:
 
