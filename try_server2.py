@@ -1,5 +1,3 @@
-# ignore this file, use the other try_server2 .py instead. 
-
 import socketio
 import asyncio
 from aiohttp import web
@@ -28,6 +26,9 @@ class StreamServer:
         self.data_thread.start()
 
     async def send_updates(self):
+        update = 0 ## For testing purposes only
+        update_stress ="Stress_"+str(update) ## For testing purposes only
+        update_sval ="Valence_"+str(update) ## For testing purposes only
         while True:
             try:
                 # Get latest prediction
@@ -36,11 +37,18 @@ class StreamServer:
                 if prediction:
                     # Emit prediction to all connected clients
                     print(f"Prediction: {prediction}")
-                    prediction_update = f"{prediction['stress']},{prediction['valence']}"
+                    #timestamp = prediction['timestamp']
+                    # if prediction['valence'] != "Invalid":
+                    #     time_update = prediction['valtimestamp']
+                    # else:
+                    #     continue
+                    prediction_update = f"{prediction['stress']},{prediction['valence']},{prediction['stresstimestamp']}"
+                    #prediction_update = f"{update_stress},{update_sval},"  ## For testing purposes only
                     await sio.emit('StressValenceUpdate', prediction_update)
-                    print(f"Sent update: {prediction}")
+                    print(f"Sent update: {prediction_update}")
                 
                 # Wait for a bit before next update
+                update+=1 ## For testing purposes only
                 await asyncio.sleep(2)
             
             except Exception as e:
