@@ -1,3 +1,5 @@
+# ignore this file, use the other try_server2 .py instead 
+
 import socketio
 import asyncio
 from aiohttp import web
