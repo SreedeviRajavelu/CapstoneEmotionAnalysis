@@ -1,5 +1,3 @@
-# ignore this file, use mahata_integration.py instead - it is the updated version
-
 # Imports
 import csv
 import pandas as pd
@@ -632,7 +630,9 @@ class DataProcessor:
         # Put the predictions in the queue for other threads to consume
         self.prediction_queue.put({
             'stress': mapped_stress,
-            'valence': mapped_valence
+            'valence': mapped_valence,
+            'stresstimestamp': end_datetime_stress.strftime("%I:%M:%S %p"),
+            'valtimestamp': end_datetime_valence.strftime("%I:%M:%S %p")
         })
         
         # Stress predictions (5 seconds)
